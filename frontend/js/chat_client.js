@@ -4,6 +4,7 @@ var CONFIG = { debug: false
              , last_message_time: 1
              , focus: true //event listeners bound in onConnect
              , unread: 0 //updated in the message-processing loop
+             , language: '' // set in onConnect
              };
 
 var nicks = [];
@@ -246,6 +247,10 @@ function addMessage (from, text, time, _class) {
   // replace URLs with links
   text = text.replace(util.urlRE, '<a target="_blank" href="$&">$&</a>');
 
+  google.language.translate(text, '', CONFIG.language, function(result) {
+	if (result.translation) {
+		text = result.translation
+	}
   var content = '<tr>'
               + '  <td class="date">' + util.timeString(time) + '</td>'
               + '  <td class="nick">' + util.toStaticHTML(from) + '</td>'
@@ -259,6 +264,7 @@ function addMessage (from, text, time, _class) {
 
   //always view the most recent message when it is added
   scrollDown();
+  });
 }
 
 function updateRSS () {
@@ -498,7 +504,15 @@ function trim(str) {
   return newstr;
 }
 
-$(document).ready(function() {
+function translate(e) {
+	google.language.translate($(e).html(), '', CONFIG.language, function(result) {
+		if (result.translation) {
+			$(e).html(result.translation)
+		}
+	})
+}
+
+function initialize() {
 
   $('#entry').width(($(window).width() - 85)+'px');
 
@@ -518,6 +532,20 @@ $(document).ready(function() {
       //lock the UI while waiting for a response
       showLoad();
     }
+/*
+	var language = trim($("#langInput").attr("value"));
+	language = google.language.Languages[language.toUpperCase()];
+	if (!language) {
+		return false;
+	}
+	
+	if(CONFIG.language != language) {
+		CONFIG.language = language;
+		$('.msg-text').each(function(i){
+			translate(this)
+		});
+	}
+*/
     var room = trim($("#nickInput").attr("value"));
     if (!room || room.toUpperCase() == CONFIG.room) {
       return false;
@@ -590,7 +618,8 @@ $(document).ready(function() {
   $("#log table").remove();
 
   showConnect();
-});
+}
+google.setOnLoadCallback(initialize);
 
 //if we can, notify the server that we're going away.
 $(window).unload(function () {
