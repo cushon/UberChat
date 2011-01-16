@@ -342,6 +342,7 @@ function longPoll (data) {
       first_poll = false;
       who();
       addMessage("", "type \"/nick <name>\" to change your name", new Date(), "notice");
+      addMessage("", "type \"/lang <language code>\" to change your language", new Date(), "notice");
 
     }
   }
