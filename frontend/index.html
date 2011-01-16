@@ -11,6 +11,10 @@
   //<![CDATA[
   google.load("language", "1");
   google.load("jquery", "1.3.2");
+  var language = '{{language}}'
+  if(window.history.pushState != undefined) {
+    history.pushState({}, '', '/'+language)
+  }
   //]]>
   </script>
   <script src="/animation.js" language="javascript" type="text/javascript"></script>
