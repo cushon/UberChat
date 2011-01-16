@@ -4,7 +4,7 @@ var CONFIG = { debug: false
              , last_message_time: 1
              , focus: true //event listeners bound in onConnect
              , unread: 0 //updated in the message-processing loop
-             , language: '' // set in onConnect
+             , language: 'en' // english default
              };
 
 var nicks = [];
@@ -384,7 +384,11 @@ function longPoll (data) {
 
 //submit a new message to the server
 function send(msg) {
-  if (CONFIG.debug === false) {
+  if (msg.search("/lang") != -1) {
+    msg = msg.substring(5);
+    var newlang = msg.split(' ').join('');
+    CONFIG.language = newlang;
+  } else if(CONFIG.debug === false) {
     // XXX should be POST
     // XXX should add to messages immediately
     console.log(msg)

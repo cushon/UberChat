@@ -1,5 +1,5 @@
 var sys = require("sys");
-var storage = require('./Storage.js');
+//var storage = require('./Storage.js');
 
 var MESSAGE_BACKLOG = 5000;
 
@@ -42,7 +42,7 @@ exports.Channel.prototype.appendMessage = function (nick, type, text) {
 
   // log into mongodb
   m.room = this.name;
-  storage.save('messages', m);
+  //storage.save('messages', m);
   while (this.callbacks.length > 0) {
     this.callbacks.shift().callback([m]);
   }
