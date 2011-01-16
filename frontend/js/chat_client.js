@@ -341,7 +341,9 @@ function longPoll (data) {
     if (first_poll) {
       first_poll = false;
       who();
-      addMessage("", "type \"/nick <name>\" to change your name", new Date(), "notice");
+      addMessage("", "type \"/nick <name>\" to change your name",
+//<br/>type \"/list-users\" to list users in this room<br/>type \"/languages <language>\" to change your language<br/>type \"/list-languages\" to view language options
+        new Date(), "notice");
 
     }
   }
@@ -385,6 +387,8 @@ function send(msg) {
   if (CONFIG.debug === false) {
     // XXX should be POST
     // XXX should add to messages immediately
+    console.log(msg)
+
     var new_nick_matches = /\/nick ([\w_, !]+)/.exec(msg);
     if (new_nick_matches) {
       var new_nick = new_nick_matches[1];
@@ -401,6 +405,17 @@ function send(msg) {
                }
              , success: function() {}
              });
+    } else if (/\/list-languages/.exec(msg)) {
+	  filter = /\/list-languages ([\w_, !]+)/.exec(msg);
+      var lang_strings = []
+	  $.each(google.language.Languages, function(key, value) {
+		if(!filter || filter && key.toLowerCase().indexOf(filter[1].toLowerCase()) == 0) {
+	      lang_strings.push(key.charAt(0).toUpperCase() + key.toLowerCase().slice(1))
+		}
+	  })
+	  addMessage("languages:", lang_strings.join(", "), new Date(), "notice");
+	} else if(/\/list-users/.exec(msg)) {
+      outputUsers();
     } else {
       jQuery.get("/send", {nick: CONFIG.nick, room: CONFIG.room, text: msg}, function (data) { }, "json");
     }
