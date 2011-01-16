@@ -1,6 +1,6 @@
 var CONFIG = { debug: false
              , nick: ""   // set in onConnect
-	           , room: ""   // set in onConnect
+	         , room: ""   // set in onConnect
              , last_message_time: 1
              , focus: true //event listeners bound in onConnect
              , unread: 0 //updated in the message-processing loop
@@ -443,7 +443,7 @@ function send(msg) {
 		}
 	  })
 	  addMessage("languages:", lang_strings.slice(0, lang_strings.length-1).join(", "), new Date(), "notice");
-	} else if(/\/list-users/.exec(msg)) {
+	} else if(/\/users/.exec(msg)) {
       outputUsers();
     } else {
       jQuery.get("/send", {nick: CONFIG.nick, room: CONFIG.room, text: msg}, function (data) { }, "json");
@@ -586,20 +586,6 @@ function initialize() {
       //lock the UI while waiting for a response
       showLoad();
     }
-/*
-	var language = trim($("#langInput").attr("value"));
-	language = google.language.Languages[language.toUpperCase()];
-	if (!language) {
-		return false;
-	}
-	
-	if(CONFIG.language != language) {
-		CONFIG.language = language;
-		$('.msg-text').each(function(i){
-			translate(this)
-		});
-	}
-*/
     var room = trim($("#nickInput").attr("value"));
     if (!room || room.toUpperCase() == CONFIG.room) {
       return false;
