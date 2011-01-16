@@ -341,10 +341,10 @@ function longPoll (data) {
     if (first_poll) {
       first_poll = false;
       who();
-      addMessage("", "type \"/nick <name>\" to change your name",
-//<br/>type \"/list-users\" to list users in this room<br/>type \"/languages <language>\" to change your language<br/>type \"/list-languages\" to view language options
-        new Date(), "notice");
-
+      addMessage("", "type \"/nick <name>\" to change your name", new Date(), "notice");
+      addMessage("", "type \"/users\" to list all users in this room", new Date(), "notice");
+      addMessage("", "type \"/lang <language code or name>\" to change your language", new Date(), "notice");
+      addMessage("", "type \"/langs\" to view all language options", new Date(), "notice");
     }
   }
 
@@ -395,8 +395,9 @@ function newlanguage(lang) {
 
 //submit a new message to the server
 function send(msg) {
-  if (msg.search("/lang") != -1) {
-	msg = msg.substring(5).split(' ').join('').toLowerCase();
+  lang_matches = /\/lang ([\w_, !]+)/.exec(msg);
+  if (lang_matches) {
+	msg = lang_matches[1].toLowerCase();
 	var found = false;
 	if(msg.length > 0) {
 	  translate_string(msg.toLowerCase(), function(translated) {
@@ -433,8 +434,8 @@ function send(msg) {
                }
              , success: function() {}
              });
-    } else if (/\/list-languages/.exec(msg)) {
-	  filter = /\/list-languages ([\w_, !]+)/.exec(msg);
+    } else if (/\/langs/.exec(msg)) {
+	  filter = /\/langs ([\w_, !]+)/.exec(msg);
       var lang_strings = []
 	  $.each(google.language.Languages, function(key, value) {
 		if(!filter || filter && key.toLowerCase().indexOf(filter[1].toLowerCase()) == 0) {
