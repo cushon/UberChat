@@ -382,12 +382,36 @@ function longPoll (data) {
          });
 }
 
+function newlanguage(lang) {
+	CONFIG.language = lang
+	var lang_name = '';
+	$.each(google.language.Languages, function(key, value) {
+	    if(value == lang) {
+		  lang_name = key.charAt(0).toUpperCase() + key.toLowerCase().slice(1)
+		}
+    })
+    addMessage("language:", lang_name, new Date(), "notice")
+}
+
 //submit a new message to the server
 function send(msg) {
   if (msg.search("/lang") != -1) {
-    msg = msg.substring(5);
-    var newlang = msg.split(' ').join('');
-    CONFIG.language = newlang;
+	msg = msg.substring(5).split(' ').join('').toLowerCase();
+	var found = false;
+	if(msg.length > 0) {
+	  translate_string(msg.toLowerCase(), function(translated) {
+            translated = translated.toLowerCase()
+            $.each(google.language.Languages, function(key, value) {
+	      if(msg == value.toLowerCase() || translated == key.toLowerCase()) {
+	    	newlanguage(value)
+	    	found = true;
+	      }
+	    })
+	    if(!found) {
+	    	addMessage("error:", "Language " + msg + " not found.", new Date(), "notice");
+	    }
+	  }, 'en')
+    }
   } else if(CONFIG.debug === false) {
     // XXX should be POST
     // XXX should add to messages immediately
@@ -417,7 +441,7 @@ function send(msg) {
 	      lang_strings.push(key.charAt(0).toUpperCase() + key.toLowerCase().slice(1))
 		}
 	  })
-	  addMessage("languages:", lang_strings.join(", "), new Date(), "notice");
+	  addMessage("languages:", lang_strings.slice(0, lang_strings.length-1).join(", "), new Date(), "notice");
 	} else if(/\/list-users/.exec(msg)) {
       outputUsers();
     } else {
@@ -523,12 +547,22 @@ function trim(str) {
   return newstr;
 }
 
-function translate(e) {
-	google.language.translate($(e).html(), '', CONFIG.language, function(result) {
+function translate_string(str, f) {
+	translate_string(str, f, CONFIG.language)
+}
+
+function translate_string(str, f, lang) {
+	google.language.translate(str, '', lang, function(result) {
 		if (result.translation) {
-			$(e).html(result.translation)
+			f(result.translation)
+		} else {
+			f(result.translation)
 		}
 	})
+}
+
+function translate(e) {
+	translate_string($(e).html(), function(s){$(e).html(s)})
 }
 
 function initialize() {
