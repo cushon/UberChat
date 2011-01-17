@@ -244,17 +244,21 @@ function addMessage (from, text, time, _class) {
   if (nick_re.exec(text))
     messageElement.addClass("personal");
 
-  // replace URLs with links
-  text = text.replace(util.urlRE, '<a target="_blank" href="$&">$&</a>');
+  var native_text = text;
 
   google.language.translate(text, '', CONFIG.language, function(result) {
 	if (result.translation) {
 		text = result.translation
 	}
+	
+	// replace URLs with links
+    text = text.replace(util.urlRE, '<a target="_blank" href="$&">$&</a>');
+
   var content = '<tr>'
               + '  <td class="date">' + util.timeString(time) + '</td>'
               + '  <td class="nick">' + util.toStaticHTML(from) + '</td>'
               + '  <td class="msg-text">' + text  + '</td>'
+              + '  <td class="native-text" style="display:none">' + native_text  + '</td>'
               + '</tr>'
               ;
   messageElement.html(content);
@@ -387,6 +391,7 @@ function newlanguage(lang) {
 	if(window.history.pushState != undefined) {
       history.pushState({}, '', '/'+lang)
     }
+    $('.msg-text').slice(-50).each(function(i) {translate(this)})
 	var lang_name = '';
 	$.each(google.language.Languages, function(key, value) {
 	    if(value == lang) {
@@ -551,22 +556,26 @@ function trim(str) {
   return newstr;
 }
 
-function translate_string(str, f) {
-	translate_string(str, f, CONFIG.language)
-}
-
 function translate_string(str, f, lang) {
+	if(!lang) {
+		lang = CONFIG.language
+	}
 	google.language.translate(str, '', lang, function(result) {
 		if (result.translation) {
 			f(result.translation)
 		} else {
-			f(result.translation)
+			f(str)
 		}
 	})
 }
 
 function translate(e) {
-	translate_string($(e).html(), function(s){$(e).html(s)})
+	translate_string(
+	  $(e).siblings('.native-text').filter(':first').html(),
+	  function(s){
+	    $(e).html(
+	      s.replace(util.urlRE, '<a target="_blank" href="$&">$&</a>'))
+	  })
 }
 
 function initialize() {
