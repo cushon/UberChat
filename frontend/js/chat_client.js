@@ -4,7 +4,7 @@ var CONFIG = { debug: false
              , last_message_time: 1
              , focus: true //event listeners bound in onConnect
              , unread: 0 //updated in the message-processing loop
-             , language: 'en' // english default
+             , language: language // english default
              };
 
 var nicks = [];
@@ -384,6 +384,9 @@ function longPoll (data) {
 
 function newlanguage(lang) {
 	CONFIG.language = lang
+	if(window.history.pushState != undefined) {
+      history.pushState({}, '', '/'+lang)
+    }
 	var lang_name = '';
 	$.each(google.language.Languages, function(key, value) {
 	    if(value == lang) {
