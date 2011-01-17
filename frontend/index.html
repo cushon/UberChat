@@ -29,17 +29,24 @@
 <body>
   <div id="stripes"></div>
   <div id="uwc_base">
+  <div id="uwc_header" style="display:none;">
+    <img id="logo" src="/images/logo.png" style="margin-right: 30px"/>
+    <img id="amp_text" style="display: block" src="/images/amp_text.png"/>
+    <img id="logo_right" src="/images/logo_right.png" style="margin-left: 30px"/>
+    </div>
     <div id="uwc_splash">
       <div class="content">
       <div id="connect">
         <p>
             <form action="#">
               <fieldset> 
+                <img id="amp_text" style="display: block" src="/images/amp_text.png"/>
                 <img id="logo" src="/images/logo.png" style="margin-right: 30px"/>
-                <label for="nick">What room are you in?</label>
+                <!--<label for="nick">What room are you in?</label>-->
                 <input id="nickInput" class="text"type="text" name="nick" value="" />
-                <input id="connectButton" class="button" type="submit" name="button" value="Join"/>
+                <img id="logo_right" src="/images/logo_right.png" style="margin-left: 30px"/>
                 <p id="example">Example: RCH101</p>
+                <input id="connectButton" class="button" type="submit" name="button" value="Join"/>
               </fieldset>
             </form>
         </p>
