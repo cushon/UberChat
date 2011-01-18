@@ -1,12 +1,17 @@
 body {
   padding: 0;
   margin: 0;
-  background-image: url("/images/amp_img.png");
 }
+
 body, #uwc_splash {
   background: white;
   color: #d39d3c
 }
+
+body {
+  background-image: url("/images/amp.png");
+}
+
 body, table {
   font-family: Times New Roman, fixed; 
   font-size: 14pt;
@@ -177,10 +182,10 @@ a:hover { text-decoration: underline; color: #aaa; }
   text-align:center;
 }
 
-#connectButton {
+#connectButton {/*
   display: block;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto;*/
 }
 
 #amp_text {
