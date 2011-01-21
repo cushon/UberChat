@@ -477,7 +477,7 @@ function showChat (nick) {
   $("#entry").focus();
 
   $("#loading").hide();
-  $("#example").hide();
+  //$("#example").hide();
 
   scrollDown();
 }
@@ -485,9 +485,9 @@ function showChat (nick) {
 //we want to show a count of unread messages when the window does not have focus
 function updateTitle(){
   if (CONFIG.unread) {
-    document.title = "(" + CONFIG.unread.toString() + ") uwchat";
+    document.title = "(" + CONFIG.unread.toString() + ") Ampersand";
   } else {
-    document.title = "uwchat";
+    document.title = "Ampersand";
   }
 }
 
@@ -580,7 +580,7 @@ function translate(e) {
 
 function initialize() {
 
-  $('#entry').width(($(window).width() - 85)+'px');
+  //$('#entry').width(($(window).width() - 85)+'px');
 
   //submit new messages when the user hits enter if the message isnt blank
   $("#entry").keypress(function (e) {

@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
-
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
    
@@ -27,12 +26,13 @@
 
 </head>
 <body>
-  <div id="stripes"></div>
   <div id="uwc_base">
   <div id="uwc_header" style="display:none;">
-    <img id="logo" src="/images/logo.png" style="margin-right: 30px"/>
-    <img id="amp_text" style="display: block" src="/images/amp_text.png"/>
-    <img id="logo_right" src="/images/logo_right.png" style="margin-left: 30px"/>
+    <img id="header_swirl_left" src="/images/swirl_left.png" style="margin-right: 30px"/>
+    <div id="header_amp_text">
+    <img style="display: block" src="/images/amp_text.png"/>
+    </div>
+    <img id="header_swirl_right" src="/images/swirl_right.png" style="margin-left: 30px"/>
     </div>
     <div id="uwc_splash">
       <div class="content">
@@ -41,10 +41,10 @@
             <form action="#">
               <fieldset> 
                 <img id="amp_text" style="display: block" src="/images/amp_text.png"/>
-                <img id="logo" src="/images/logo.png" style="margin-right: 30px"/>
+                <img id="logo" src="/images/swirl_left.png" style="margin-right: 30px"/>
                 <!--<label for="nick">What room are you in?</label>-->
                 <input id="nickInput" class="text"type="text" name="nick" value="" />
-                <img id="logo_right" src="/images/logo_right.png" style="margin-left: 30px"/>
+                <img id="logo_right" src="/images/swirl_right.png" style="margin-left: 30px"/>
                 <p id="example">Example: Velocity</p>
                 <input id="connectButton" class="button" type="submit" name="button" value="Join"/>
               </fieldset>
@@ -52,14 +52,13 @@
         </p>
       </div>
       </div>
-      <div id="uwc_divider"></div>
     </div>
 
     <div id="uwc_chat">
-      <h2>Room Title</h2>
       <div id="log">
         <table class="message"></table>
       </div> <!-- Log -->
+      <div id=log_border></div>
       <div id="toolbar">
         <input tabindex="1" type="text" id="entry"/>
       </div>

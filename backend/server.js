@@ -388,11 +388,11 @@ fu.get("/animation.js", fu.staticHandler("frontend/js/animation.js"));
 
 fu.get("/favicon.ico", fu.staticHandler("frontend/images/favicon.ico"));
 fu.get("/images/shadow.png", fu.staticHandler("frontend/images/shadow.png"));
-fu.get("/images/logo.png", fu.staticHandler("frontend/images/swirl_logo.png"));
-fu.get("/images/logo_right.png", fu.staticHandler("frontend/images/swirl_logo_right.png"));
+fu.get("/images/swirl_left.png", fu.staticHandler("frontend/images/swirl_left.png"));
+fu.get("/images/swirl_right.png", fu.staticHandler("frontend/images/swirl_right.png"));
 fu.get("/images/stripes.png", fu.staticHandler("frontend/images/stripes.png"));
 fu.get("/images/amp.png", fu.staticHandler("frontend/images/amp.png"));
-fu.get("/images/amp_text.png", fu.staticHandler("frontend/images/amp_text.png"));
+fu.get("/images/amp_text.png", fu.staticHandler("frontend/images/amp_text_nounderline.png"));
 
 fu.get("/who", function (req, res) {
   sys.puts('serv: who');
