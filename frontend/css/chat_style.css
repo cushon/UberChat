@@ -108,10 +108,28 @@ a:hover { text-decoration: underline; color: #aaa; }
   border: 6px double #A4C8EF;
   height: 525px;
   width: inherit;
+  z-index: 4;
+}
+
+#log_background {
+  position: fixed;
+  bottom: 51px;
+  height: 525px;
+  width: inherit;
   background-image: url("/images/amp.png");
   background-repeat: no-repeat;
   background-position: center center;
   z-index: -1;
+  padding: 6px;
+}
+
+#toolbar_container {
+  position: fixed;
+  bottom: 0px;
+  width: 981px;
+  height: 57px;
+  background-color: white;
+  z-index: 0;
 }
 
 /* not very important info */
@@ -230,7 +248,7 @@ a:hover { text-decoration: underline; color: #aaa; }
 
 #uwc_header {
   width: inherit;
-  height: 113px;
+  height: 119px;
   z-index: 3;
   position: fixed;
   top: 0px;
