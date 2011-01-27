@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+<!DO}CTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -18,12 +18,39 @@
   </script>
   <script src="/animation.js" language="javascript" type="text/javascript"></script>
   <script src="/chat_client.js" type="text/javascript"></script>
+  <script src="/jquery.js" type="text/javascript"></script>
+  <script src="/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function() {
+            
+            $( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+            $("#dialog").dialog({ 
+              autoOpen: false,
+              width: 600,
+              modal: true,
+              resizable: false,
+              show: "fade",
+              hide: "explode",
+              buttons: { 
+                "Awesome.": function() { 
+                  $(this).dialog("close"); 
+                } 
+              }
+            });
+
+            $("#open_dialog").click(function() {
+              $("#dialog").dialog("open");
+              return false;
+            });
+    });
+  </script>
 
   <title>Ampersand</title>
 
   <link rel="stylesheet" type="text/css" href="/reset.css"/>
-  <link href="/chat_style.css" rel="stylesheet" type="text/css">
-
+  <link href="/chat_style.css" rel="stylesheet" type="text/css"/>
+  <link href="/jquery-ui-1.8.9.custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
   <div id="uwc_base">
@@ -45,8 +72,14 @@
                 <!--<label for="nick">What room are you in?</label>-->
                 <input id="nickInput" class="text"type="text" name="nick" value="" />
                 <img id="logo_right" src="/images/swirl_right.png" style="margin-left: 30px"/>
-                <p id="example">Example: Velocity</p>
+                <div id="dialog">
+                  <h2>Ampersand is an experiment.</h2>
+                  <p>We took Google's translate API and mashed it with a basic chat client. The result? Universal Translator Chat!</p>
+                  <p>Enter a chat room with the field above, type /languages to get a list of available languages, then choose your language with /language {language name}.</p>
+                  <p>Congratulations, you now speak every language.</p>
+                </div>
                 <input id="connectButton" class="button" type="submit" name="button" value="Join"/>
+                <a id="open_dialog">What is this?</a>
               </fieldset>
             </form>
         </p>

@@ -207,18 +207,23 @@ a:hover { text-decoration: underline; color: #aaa; }
   width: 512px;
 }
 
-#example {
+#open_dialog {
   font-style: italic;
   font-weight: bold;
   color: #a4c8ef;
   font-size:0.8em;
   text-align:center;
+  display: block;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-#connectButton {/*
+#connectButton {
   display: block;
   margin-left: auto;
-  margin-right: auto;*/
+  margin-right: auto;
+  margin-top: 3px;
+  width: 40px;
 }
 
 #amp_text {
@@ -256,3 +261,14 @@ a:hover { text-decoration: underline; color: #aaa; }
   opacity: 0;
 }
 
+#dialog p {
+  text-align: center;
+  display: block;
+  font-size: 12pt;
+  margin-bottom: 5px;
+}
+
+#dialog h2 {
+  text-align: center;
+  display: block;
+}

@@ -394,6 +394,16 @@ fu.get("/images/stripes.png", fu.staticHandler("frontend/images/stripes.png"));
 fu.get("/images/amp.png", fu.staticHandler("frontend/images/amp.png"));
 fu.get("/images/amp_text.png", fu.staticHandler("frontend/images/amp_text_nounderline.png"));
 
+
+fu.get("/images/ui-bg_flat_0_aaaaaa_40x100.png", fu.staticHandler("frontend/images/ui-bg_flat_0_aaaaaa_40x100.png"));
+fu.get("/images/ui-bg_flat_10_ffffff_40x100.png", fu.staticHandler("frontend/images/ui-bg_flat_10_ffffff_40x100.png"));
+fu.get("/images/ui-bg_highlight-soft_75_cccccc_1x100.png", fu.staticHandler("frontend/images/ui-bg_highlight-soft_75_cccccc_1x100.png"));
+fu.get("/images/ui-icons_222222_256x240.png", fu.staticHandler("frontend/images/ui-icons_222222_256x240.png"));
+
+
+fu.get("/jquery-ui-1.8.9.custom.css", fu.staticHandler("frontend/css/jquery-ui-1.8.9.custom.css"));
+fu.get("/jquery-ui-1.8.9.custom.min.js", fu.staticHandler("frontend/js/jquery-ui-1.8.9.custom.min.js"));
+
 fu.get("/who", function (req, res) {
   sys.puts('serv: who');
   sys.puts(' - req: '+req);
