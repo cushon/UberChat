@@ -25,6 +25,20 @@
             
             $( "#dialog:ui-dialog" ).dialog( "destroy" );
 
+            $("#credits").dialog({ 
+              autoOpen: false,
+              width: 600,
+              modal: true,
+              resizable: false,
+              show: "fade",
+              hide: "explode",
+              buttons: { 
+                "Sweet.": function() { 
+                  $(this).dialog("close"); 
+                } 
+              }
+            });
+
             $("#dialog").dialog({ 
               autoOpen: false,
               width: 600,
@@ -41,6 +55,12 @@
 
             $("#open_dialog").click(function() {
               $("#dialog").dialog("open");
+              return false;
+            });
+            
+            $("#open_credits").click(function() {
+              $("#dialog").dialog("close");
+              $("#credits").dialog("open");
               return false;
             });
     });
@@ -74,9 +94,14 @@
                 <img id="logo_right" src="/images/swirl_right.png" style="margin-left: 30px"/>
                 <div id="dialog">
                   <h2>Ampersand is an experiment.</h2>
-                  <p>We took a basic chat client and hooked it up with the Google Translate API. The result? Universal Translator Chat!</p>
-                  <p>Enter a chat room with the field above, type /languages to get a list of available languages, then choose your language with /language {language name}.</p>
+                  <p><a id="open_credits">We</a> took a basic chat client and hooked it up with the Google Translate API. The result? <span id="wow">Universal Translator Chat!</span></p>
+                  <p>Choose any chat room with the field on this page. Once in a room, you can type /languages to get a list of available languages, and choose your language with /language {language name}.</p>
                   <p>Congratulations, you now speak every language.</p>
+                </div>
+                <div id="credits">
+                  <p>Code: Gareth & Liam</p>
+                  <p>Design: <a href="http://www.howlettstudios.com">Chris</a></p> 
+                  <p>Ampersand is a fork of the <a href="http://uwchat.ca">uwchat.ca</a> project</p>
                 </div>
                 <input id="connectButton" class="button" type="submit" name="button" value="Join"/>
                 <a id="open_dialog">What is this?</a>

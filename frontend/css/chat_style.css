@@ -207,7 +207,7 @@ a:hover { text-decoration: underline; color: #aaa; }
   width: 512px;
 }
 
-#open_dialog {
+#open_dialog, #open_credits {
   font-style: italic;
   font-weight: bold;
   color: #a4c8ef;
@@ -216,6 +216,11 @@ a:hover { text-decoration: underline; color: #aaa; }
   display: block;
   text-decoration: underline;
   cursor: pointer;
+}
+
+#open_credits {
+  display: inline;
+  font-size: 13pt;
 }
 
 #connectButton {
@@ -272,4 +277,25 @@ a:hover { text-decoration: underline; color: #aaa; }
   text-align: center;
   display: block;
   margin-bottom: 5px;
+}
+
+#wow {
+  font-style: italic;
+}
+
+#dialog a, #credits a {
+  font-style: italic;
+  font-weight: bold;
+  color: #a4c8ef;
+  font-size:13pt;
+  text-align:center;
+  display: inline;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#credits {
+  text-align: center;
+  font-size: 13pt;
+  margin-top: 20px;
 }
