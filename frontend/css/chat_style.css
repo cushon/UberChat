@@ -271,4 +271,5 @@ a:hover { text-decoration: underline; color: #aaa; }
 #dialog h2 {
   text-align: center;
   display: block;
+  margin-bottom: 5px;
 }
